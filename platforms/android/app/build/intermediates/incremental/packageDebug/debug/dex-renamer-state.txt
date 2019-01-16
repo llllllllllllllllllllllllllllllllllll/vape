@@ -1,0 +1,4 @@
+#Wed Jan 16 19:12:48 GMT+02:00 2019
+base.0=/home/aleksander/vape/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

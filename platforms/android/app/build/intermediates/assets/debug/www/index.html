@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link href="open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+
+            <ul class="nav nav-pills nav-fill bottom-nav" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a href="#pills-calc" data-toggle="pill" id="pills-calc-tab" role="tab" aria-controls="pills-home" aria-selected="true" class="nav-link active">Kalkulaator</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pills-recipes" data-toggle="pill" id="pills-recipes-tab" role="tab" aria-controls="pills-recipes" aria-selected="false" class="nav-link">Retseptid</a>
+                </li>
+            </ul>
+
+            <div class="tab-content show active" id="pills-tabContent">
+                <div class="tab-pane active" id="pills-calc" role="tabpanel" aria-labelledby="pills-calc-tab">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2>Kanguse kalkulaator</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <form id="calculate-form">
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input type="number" class="form-control" id="totalAmount" name="totalAmount" placeholder="Vedeliku kogus(ml)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input type="number" class="form-control" id="nicotineStrength" name="nicotineStrength" placeholder="Nikotiini baasi kangus(mg/ml)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input type="number" class="form-control" id="liquidStrength" name="liquidStrength" placeholder="Soovitav vedeliku kangus(mg/ml)">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-10 align-content-center">
+                                            <button id="calculate" type="button" class="btn btn-primary w-100">Arvuta</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-12">
+                                <div id="result"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="pills-recipes" role="tabpanel" aria-labelledby="pills-recipes-tab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2>Retseptide arhiiv</h2>
+                            </div>
+                        </div>
+                    <div id="recipe-list" class="list-group">
+                    </div>
+
+                    <div id="recipe-view" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Retsept</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong>Nimi:</strong> <span id="recipeview-name"></span><br>
+                                    <strong>Kogus:</strong> <span id="recipeview-volume"></span><br>
+                                    <strong>Komponendid:</strong>
+                                    <ul class="list-group" id="recipeview-components">
+
+                                    </ul>
+                                    <strong>Kirjedlus:</strong><br><p id="recipeview-description"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <div id="deleteBtn"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="addbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+                        <span class="oi oi-plus" title="plus" aria-hidden="true"></span>
+                    </button>
+
+                    <div id="add-modal" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Lisa uus vedelik</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form id="addrecipe-form">
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="recipeName" placeholder="Retsepti nimi">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="recipeVolume" placeholder="Vedeliku kogus">
+                                            </div>
+                                        </div>
+                                        <div id="components">
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" placeholder="Komponent">
+                                                </div>
+                                            </div>
+                                            <button class="mb-5 btn btn-dark w-100" type="button" id="addreciperow">Lisa rida</button>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <textarea form="addrecipe-form" class="form-control" id="recipeDescription" placeholder="Kirjeldus"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="addrecipe-button" type="button" class="btn btn-primary">Salvesta retsept</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <script type="text/javascript" src="js/jquery-slim.min.js"></script>
+        <script type="text/javascript" src="js/jquery-validation/dist/jquery.validate.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+    </body>
+</html>
